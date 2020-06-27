@@ -15,7 +15,7 @@ SRCS := main.cpp
 OBJS := $(SRCS:.c=.o)
 
 # name of executable
-EXEC := rocket
+EXEC := tic-tac-toe
 
 # default recipe
 all: $(EXEC)
