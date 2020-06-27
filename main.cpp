@@ -3,8 +3,6 @@
 #include <SDL2/SDL_image.h> 
 #include <SDL2/SDL_timer.h>
 
-const unsigned int SCREEN_WIDTH = 640;
-const unsigned int SCREEN_HEIGHT = 480;
 
 int main(int argc, char *argv[]) 
 {
