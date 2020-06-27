@@ -6,7 +6,7 @@ CC := clang
 # set the compiler flags
 CFLAGS := `sdl2-config --libs --cflags` -ggdb3 -O0 --std=c++17 -Wall -lSDL2_image $(shell sdl2-config --cflags) -Wall -O
 # add header files here
-HDRS :=
+HDRS := game.h logic.h render.h
 
 # add source files here
 SRCS := main.cpp

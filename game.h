@@ -4,7 +4,13 @@
 const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;
 
+// the grid row and column size
 const unsigned int GRID_SIZE	= 3;
+
+// cell hight and width constants
+const float cellHight = SCREEN_HEIGHT / GRID_SIZE;
+const float cellWidth = SCREEN_WIDTH / GRID_SIZE;
+
 
 // game states
 const unsigned int RUNNING 	= 0;
@@ -19,9 +25,10 @@ const unsigned int PLAYER_X	= 1;
 const unsigned int PLAYER_O 	= 2;
 
 // the main game struct
-struct 
+typedef struct 
 {
 	int grid[GRID_SIZE * GRID_SIZE];
 	int field_state;
-	int state_of_the_game;
-} game;
+	int state;
+} Game;
+

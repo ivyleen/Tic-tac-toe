@@ -2,6 +2,9 @@
 #include <SDL2/SDL.h> 
 #include <SDL2/SDL_image.h> 
 #include <SDL2/SDL_timer.h>
+#include "game.h"
+#include "logic.h"
+#include "render.h"
 
 
 int main(int argc, char *argv[]) 
@@ -35,18 +38,36 @@ int main(int argc, char *argv[])
 	   return EXIT_FAILURE;
     }
 
+    // creating the event object
     SDL_Event e;
-    int quit = 0;
-   
-    while(!quit)
+    // initialize the game with empty grid
+    Game game = {
+    	.grid = {
+	    	EMPTY, EMPTY, EMPTY,
+    		EMPTY, EMPTY, EMPTY,
+    		EMPTY, EMPTY, EMPTY
+    		},
+	.field_state = PLAYER_X,
+	.state = RUNNING
+    };
+
+  
+    while( game.state != QUIT_GAME )
     {
-	    while(SDL_PollEvent(&e))
+	    while( SDL_PollEvent(&e) )
    	    {
 		    switch(e.type)
 		    {
 			    case SDL_QUIT:
-				    quit = 1;
+				    game.state = QUIT_GAME;
 				    break;
+
+			    case SDL_MOUSEBUTTONDOWN:
+				   clickOnField(&game,
+						   e.button.y / cellHight,
+						   e.button.x / cellWidth); 
+				    break;
+
 		            default: break;
 		    }
 	    }
@@ -55,6 +76,8 @@ int main(int argc, char *argv[])
 	    SDL_SetRenderDrawColor(renderer, 0,0,0,255);
             // clear with the drawing color
 	    SDL_RenderClear(renderer);
+	    // render game
+	    renderGame(renderer, &game);
 	    // update the screen
 	    SDL_RenderPresent(renderer);
     }
