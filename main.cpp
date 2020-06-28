@@ -42,13 +42,13 @@ int main(int argc, char *argv[])
     SDL_Event e;
     // initialize the game with empty grid
     Game game = {
-    	.grid = {
-	    	EMPTY, EMPTY, EMPTY,
-    		EMPTY, EMPTY, EMPTY,
+    	{
+	    	EMPTY, EMPTY, PLAYER_O,
+    		EMPTY, PLAYER_X, EMPTY,
     		EMPTY, EMPTY, EMPTY
-    		},
-	.field_state = PLAYER_X,
-	.state = RUNNING
+    	},
+	PLAYER_X,
+	RUNNING
     };
 
   
@@ -64,8 +64,8 @@ int main(int argc, char *argv[])
 
 			    case SDL_MOUSEBUTTONDOWN:
 				   clickOnField(&game,
-						   e.button.y / cellHight,
-						   e.button.x / cellWidth); 
+						   e.button.y / CELL_HEIGHT,
+						   e.button.x / CELL_WIDTH); 
 				    break;
 
 		            default: break;
